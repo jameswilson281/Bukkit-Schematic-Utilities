@@ -52,4 +52,21 @@ public class MinecraftSchematicTagNames {
         public static final String DAMAGE = "Damage";
         public static final String SLOT = "Slot";
     }
+    
+    public class PistonTagNames{
+        public static final String BLOCK_ID = "blockId";
+        public static final String BLOCK_DATA = "blockData";
+        public static final String FACING = "facing";
+        public static final String PROGRESS = "progress";
+        public static final String EXTENDING = "extending";                
+    }
+    
+    public class JukeboxTagNames {
+        public static final String RECORD = "Record";
+    }
+    
+    public class CauldronTagNames {
+        public static final String BREW_TIME = "BrewTime";
+        public static final String ITEMS = "Items";
+    }
 }

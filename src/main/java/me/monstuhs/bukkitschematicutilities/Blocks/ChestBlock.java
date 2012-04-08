@@ -19,9 +19,7 @@ package me.monstuhs.bukkitschematicutilities.Blocks;
 
 import ch.spacebase.opennbt.tag.*;
 import java.util.List;
-import java.util.Map;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.ContainerBlock;
-import me.monstuhs.bukkitschematicutilities.Blocks.Base.SchematicBlock;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.TileEntityBlock;
 import me.monstuhs.bukkitschematicutilities.EntityBlockConstants;
 import me.monstuhs.bukkitschematicutilities.MinecraftSchematicTagNames;
