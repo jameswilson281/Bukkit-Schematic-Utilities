@@ -59,65 +59,38 @@ public class Schematic {
         return schematicTag;
     }
 
-    /**
-     * @return the _baseTag
-     */
     public CompoundTag getBaseTag() {
         return _baseTag;
     }
 
-    /**
-     * @return the _width
-     */
     public ShortTag getWidth() {
         return _width;
     }
 
-    /**
-     * @return the _length
-     */
     public ShortTag getLength() {
         return _length;
     }
 
-    /**
-     * @return the _height
-     */
     public ShortTag getHeight() {
         return _height;
     }
 
-    /**
-     * @return the _materials
-     */
     public StringTag getMaterials() {
         return _materials;
     }
 
-    /**
-     * @return the _blocks
-     */
     public ByteArrayTag getBlocks() {
         return _blocks;
     }
 
-    /**
-     * @return the _blockData
-     */
     public ByteArrayTag getBlockData() {
         return _blockData;
     }
 
-    /**
-     * @return the _entities
-     */
     public List<CompoundTag> getEntities() {
         return _entities;
     }
 
-    /**
-     * @return the _tileEntities
-     */
     public List<CompoundTag> getTileEntities() {
         return _tileEntities;
     }

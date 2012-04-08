@@ -5,6 +5,7 @@
 package me.monstuhs.bukkitschematicutilities;
 
 import ch.spacebase.opennbt.tag.CompoundTag;
+import java.io.File;
 import java.util.HashMap;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.CauldronBlock;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.SchematicBlock;
@@ -23,6 +24,10 @@ public class MinecraftSchematic {
 
     private SchematicBlock[][][] _schematicCube;
     private Vector _sizeVector;
+    
+    public MinecraftSchematic(File schematicFile){
+        this(new Schematic(schematicFile));
+    }
 
     public MinecraftSchematic(Schematic schematic) {
 
