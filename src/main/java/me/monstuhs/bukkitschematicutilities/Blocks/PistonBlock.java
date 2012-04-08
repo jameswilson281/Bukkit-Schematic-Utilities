@@ -9,7 +9,7 @@ import ch.spacebase.opennbt.tag.CompoundTag;
 import ch.spacebase.opennbt.tag.FloatTag;
 import ch.spacebase.opennbt.tag.IntTag;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.TileEntityBlock;
-import me.monstuhs.bukkitschematicutilities.MinecraftSchematicTagNames;
+import me.monstuhs.bukkitschematicutilities.Constants.MinecraftSchematicTagNames;
 
 /**
  *

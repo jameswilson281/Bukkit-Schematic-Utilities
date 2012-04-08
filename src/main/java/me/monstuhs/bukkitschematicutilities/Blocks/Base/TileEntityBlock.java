@@ -3,7 +3,7 @@ package me.monstuhs.bukkitschematicutilities.Blocks.Base;
 import ch.spacebase.opennbt.tag.CompoundTag;
 import ch.spacebase.opennbt.tag.IntTag;
 import ch.spacebase.opennbt.tag.StringTag;
-import me.monstuhs.bukkitschematicutilities.MinecraftSchematicTagNames;
+import me.monstuhs.bukkitschematicutilities.Constants.MinecraftSchematicTagNames;
 import org.bukkit.util.Vector;
 
 public abstract class TileEntityBlock extends SchematicBlock {

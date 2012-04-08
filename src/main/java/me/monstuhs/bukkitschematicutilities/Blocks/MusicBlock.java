@@ -3,7 +3,7 @@ package me.monstuhs.bukkitschematicutilities.Blocks;
 import ch.spacebase.opennbt.tag.ByteTag;
 import ch.spacebase.opennbt.tag.CompoundTag;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.TileEntityBlock;
-import me.monstuhs.bukkitschematicutilities.MinecraftSchematicTagNames;
+import me.monstuhs.bukkitschematicutilities.Constants.MinecraftSchematicTagNames;
 
 
 public class MusicBlock extends TileEntityBlock {

@@ -2,46 +2,46 @@ package me.monstuhs.bukkitschematicutilities.Blocks.Base;
 
 public class SchematicBlock {
 
-    private short type = 0;
-    private byte data = 0;
+    private short _type = 0;
+    private byte _data = 0;
 
     public SchematicBlock(int type) {
-        this.type = (short) type;
+        this._type = (short) type;
     }
 
     public SchematicBlock(int type, int data) {
-        this.type = (short) type;
-        this.data = (byte) data;
+        this._type = (short) type;
+        this._data = (byte) data;
     }
 
     public int getType() {
-        return (int) type;
+        return (int) _type;
     }
 
     public void setType(int type) {
-        this.type = (short) type;
+        this._type = (short) type;
     }
 
-    public int getData() {
-        return (int) data;
+    public byte getData() {
+        return _data;
     }
 
-    public void setData(int data) {
-        this.data = (byte) data;
+    public void setData(byte data) {
+        this._data = (byte) data;
     }
 
     public boolean isAir() {
-        return type == 0;
+        return _type == 0;
     }
 
     public void rotate90() {
-        data = (byte) rotate90(type, data);
+        _data = (byte) rotate90(_type, _data);
     }
 
     public void rotate90Reverse() {
-        data = (byte) rotate90(type, data);
-        data = (byte) rotate90(type, data);
-        data = (byte) rotate90(type, data);
+        _data = (byte) rotate90(_type, _data);
+        _data = (byte) rotate90(_type, _data);
+        _data = (byte) rotate90(_type, _data);
     }
 
     @Override
@@ -49,15 +49,15 @@ public class SchematicBlock {
         if (!(o instanceof SchematicBlock)) {
             return false;
         }
-        return (type == ((SchematicBlock) o).type)
-                && (data == ((SchematicBlock) o).data);
+        return (_type == ((SchematicBlock) o)._type)
+                && (_data == ((SchematicBlock) o)._data);
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 83 * hash + this.type;
-        hash = 83 * hash + this.data;
+        hash = 83 * hash + this._type;
+        hash = 83 * hash + this._data;
         return hash;
     }
 

@@ -10,7 +10,9 @@ import me.monstuhs.bukkitschematicutilities.Blocks.Base.CauldronBlock;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.SchematicBlock;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.TileEntityBlock;
 import me.monstuhs.bukkitschematicutilities.Blocks.*;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.util.Vector;
 
 /**
@@ -20,6 +22,7 @@ import org.bukkit.util.Vector;
 public class MinecraftSchematic {
 
     private SchematicBlock[][][] _schematicCube;
+    private Vector _sizeVector;
 
     public MinecraftSchematic(Schematic schematic) {
 
@@ -29,8 +32,8 @@ public class MinecraftSchematic {
         byte[] blocks = schematic.getBlocks().getValue();
         byte[] blockData = schematic.getBlockData().getValue();
 
-        Vector sizeVector = new Vector(width, height, length);
-        _schematicCube = new SchematicBlock[sizeVector.getBlockX()][sizeVector.getBlockY()][sizeVector.getBlockZ()];
+        _sizeVector = new Vector(width, height, length);
+        _schematicCube = new SchematicBlock[_sizeVector.getBlockX()][_sizeVector.getBlockY()][_sizeVector.getBlockZ()];
         HashMap<Vector, CompoundTag> tileEntityLookup = new HashMap<Vector, CompoundTag>();
 
         for (CompoundTag tileEntityData : schematic.getTileEntities()) {
@@ -46,53 +49,42 @@ public class MinecraftSchematic {
                     SchematicBlock thisBlock;
                     switch (Material.getMaterial(id)) {
                         case CAULDRON:
-                            thisBlock = new CauldronBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new CauldronBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         case CHEST:
-                            thisBlock = new ChestBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new ChestBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         case DISPENSER:
-                            thisBlock = new TrapBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new TrapBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         case ENCHANTMENT_TABLE:
-                            thisBlock = new EnchantmentTableBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
-                            break;                            
+                            thisBlock = new EnchantmentTableBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
+                            break;
                         case ENDER_PORTAL:
-                            thisBlock = new EnderPortalBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new EnderPortalBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         case FURNACE:
                         case BURNING_FURNACE:
-                            thisBlock = new FurnaceBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new FurnaceBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         case MOB_SPAWNER:
-                            thisBlock = new MobSpawnerBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new MobSpawnerBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         case NOTE_BLOCK:
-                            thisBlock = new MusicBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new MusicBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
-                        case PISTON_BASE:                            
+                        case PISTON_BASE:
                         case PISTON_STICKY_BASE:
                         case PISTON_EXTENSION:
                         case PISTON_MOVING_PIECE:
-                            thisBlock = new PistonBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new PistonBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         case JUKEBOX:
-                            thisBlock = new JukeboxBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new JukeboxBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         case SIGN:
                         case SIGN_POST:
-                            thisBlock = new SignBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)),
-                                    blocks[blockIndex], blockData[blockIndex]);
+                            thisBlock = new SignBlock(tileEntityLookup.get(new Vector(xCoord, yCoord, zCoord)), id, data);
                             break;
                         default:
                             //regular schematic block
@@ -107,5 +99,18 @@ public class MinecraftSchematic {
 
     public SchematicBlock[][][] getSchematicCube() {
         return _schematicCube;
+    }
+
+    public void placeInWorld(Location origin) {
+        World thisWorld = origin.getWorld();
+
+        for (int x = 0; x < _sizeVector.getBlockX(); ++x) {
+            for (int y = 0; y < _sizeVector.getBlockY(); ++y) {
+                for (int z = 0; z < _sizeVector.getBlockZ(); ++z) {                    
+                    SchematicBlock newBlock = _schematicCube[x][y][z];
+                    thisWorld.getBlockAt(x, y, z).setTypeIdAndData(newBlock.getType(), newBlock.getData(), true);
+                }
+            }
+        }
     }
 }

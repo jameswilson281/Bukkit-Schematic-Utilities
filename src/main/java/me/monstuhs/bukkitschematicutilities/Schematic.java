@@ -9,6 +9,7 @@ import ch.spacebase.opennbt.tag.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
+import me.monstuhs.bukkitschematicutilities.Constants.MinecraftSchematicTagNames;
 
 /**
  *

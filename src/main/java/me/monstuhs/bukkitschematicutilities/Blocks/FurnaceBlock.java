@@ -7,8 +7,8 @@ import ch.spacebase.opennbt.tag.ShortTag;
 import java.util.List;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.ContainerBlock;
 import me.monstuhs.bukkitschematicutilities.Blocks.Base.TileEntityBlock;
-import me.monstuhs.bukkitschematicutilities.EntityBlockConstants;
-import me.monstuhs.bukkitschematicutilities.MinecraftSchematicTagNames;
+import me.monstuhs.bukkitschematicutilities.Constants.EntityBlockConstants;
+import me.monstuhs.bukkitschematicutilities.Constants.MinecraftSchematicTagNames;
 import org.bukkit.inventory.ItemStack;
 
 /**
